@@ -128,7 +128,7 @@ public class FareCalculatorServiceTest {
         Date inTime = new Date();
         inTime.setTime(System.currentTimeMillis() - (  20 * 60 * 1000) );
         Date outTime = new Date();
-        ParkingSpot parkingSpot = new ParkingSpot(1, ParkingType.BIKE,false);
+        ParkingSpot parkingSpot = new ParkingSpot(1, ParkingType.CAR,false);
 
         ticket.setInTime(inTime);
         ticket.setOutTime(outTime);
@@ -158,9 +158,9 @@ public class FareCalculatorServiceTest {
         ticket.setInTime(inTime);
         ticket.setOutTime(outTime);
         ticket.setParkingSpot(parkingSpot);
-        double sansDiscount = (40.0 / 60) * Fare.CAR_RATE_PER_HOUR *0.95;
+        double expectedFareWithDiscount = (40.0 / 60) * Fare.CAR_RATE_PER_HOUR * 0.95;
         fareCalculatorService.calculateFare(ticket, true);
-        assertEquals(sansDiscount, ticket.getPrice()) ;
+        assertEquals(expectedFareWithDiscount, ticket.getPrice(), 0.01);
     }
     @Test 
     public void calculateFareBikeWithDiscount(){
@@ -171,8 +171,8 @@ public class FareCalculatorServiceTest {
         ticket.setInTime(inTime);
         ticket.setOutTime(outTime);
         ticket.setParkingSpot(parkingSpot);
-        double sansDiscount = (40.0 / 60) * Fare.BIKE_RATE_PER_HOUR *0.95;
+        double expectedFareWithDiscount = (40.0 / 60) * Fare.BIKE_RATE_PER_HOUR * 0.95;
         fareCalculatorService.calculateFare(ticket, true);
-        assertEquals(sansDiscount, ticket.getPrice()) ;
+        assertEquals(expectedFareWithDiscount, ticket.getPrice(), 0.01);
     }
 }

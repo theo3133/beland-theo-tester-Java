@@ -1,6 +1,18 @@
 # Parking System
-A command line app for managing the parking system. 
-This app uses Java to run and stores the data in Mysql DB.
+
+Application Java en ligne de commande permettant de gérer l'entrée et la sortie
+des véhicules d'un parking. Les données sont stockées dans une base MySQL.
+
+## Fonctionnalités ajoutées
+
+- calcul précis de la durée de stationnement à partir des timestamps ;
+- gratuité pour un stationnement de moins de 30 minutes ;
+- réduction de 5 % pour les utilisateurs récurrents ;
+- détection des utilisateurs récurrents grâce au nombre de tickets associés à
+  leur plaque d'immatriculation ;
+- tests unitaires avec JUnit 5 et Mockito ;
+- tests d'intégration avec la base MySQL ;
+- rapports Surefire et JaCoCo.
 
 ## Getting Started
 
@@ -47,3 +59,15 @@ The app has unit tests and integration tests written. More of these need to be a
 To run the tests from maven, go to the folder that contains the pom.xml file and execute the below command.
 
 `mvn test`
+
+Pour exécuter les tests unitaires et les tests d'intégration :
+
+`mvn verify`
+
+Le rapport JaCoCo est généré dans `target/site/jacoco/index.html`.
+
+Le rapport Surefire HTML peut être généré avec :
+
+`mvn org.apache.maven.plugins:maven-surefire-report-plugin:2.22.2:report-only`
+
+Il est alors disponible dans `target/site/surefire-report.html`.
